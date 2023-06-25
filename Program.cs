@@ -41,10 +41,11 @@ static void DrawBar(int value, int maxValue, int barPosition, char symbol, Conso
     Console.BackgroundColor = barColor;
     Console.Write(bar);
     Console.BackgroundColor = defaultColor;
+    int occupied = bar.Length;
 
     bar = "";
 
-    for (int i = 0; i < maxValue; i++)
+    for (int i = 1; i <= (maxValue - occupied); i++)
     {
         bar += symbol;
     }
