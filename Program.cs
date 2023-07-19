@@ -18,11 +18,11 @@ while (true)
 
     Console.Write("Введите процент жизней:");
 
-    health = OccupancyBar(maxHealth);
+    health = FillingBar(maxHealth);
 
     Console.Write("Введите процент маны:");
 
-    mana = OccupancyBar(maxMana);
+    mana = FillingBar(maxMana);
 
     Console.Clear();
 }
@@ -30,6 +30,8 @@ static void DrawBar(int value, int maxValue, int barPosition, char symbol, Conso
 {
     ConsoleColor defaultColor = Console.BackgroundColor;
     string bar = "";
+    char leftSideBar = '[';
+    char rightSideBar = ']';
 
     for (int i = 0; i < value; i++)
     {
@@ -37,7 +39,7 @@ static void DrawBar(int value, int maxValue, int barPosition, char symbol, Conso
     }
 
     Console.SetCursorPosition(0, barPosition);
-    Console.Write('[');
+    Console.Write(leftSideBar);
     Console.BackgroundColor = barColor;
     Console.Write(bar);
     Console.BackgroundColor = defaultColor;
@@ -50,28 +52,29 @@ static void DrawBar(int value, int maxValue, int barPosition, char symbol, Conso
         bar += symbol;
     }
 
-    Console.Write(bar + ']');
+    Console.Write(bar + rightSideBar);
 }
 
-static int OccupancyBar(int maxContainers)
+static int FillingBar(int maxContainers)
 {
-    int fullContainers;
+    int numberToDivide = 10;
+    int filledСells;
     int maxPercent = 100;
     int minPercent = 0;
     int percentToConvert = Convert.ToInt32(Console.ReadLine());
 
     if (percentToConvert > minPercent && percentToConvert < maxPercent)
     {
-        fullContainers = percentToConvert / 10;
+        filledСells = percentToConvert / numberToDivide;
     }
     else if (percentToConvert >= maxPercent)
     {
-        fullContainers = maxContainers;
+        filledСells = maxContainers;
     }
     else
     {
-        fullContainers = 0;
+        filledСells = 0;
     }
     
-    return fullContainers;
+    return filledСells;
 }
